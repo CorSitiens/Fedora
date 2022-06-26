@@ -18,15 +18,15 @@ mkdir Pictures/Wallpaper
 # ==== Base Programs Install ====
 sudo dnf install \
 -y \
-@base-x
-kitty
-rofi
-thunar
-lightdm
-slick-greeter
-bspwm
-sxhkd
-polybar
+@base-x \
+kitty \
+rofi \
+thunar \
+lightdm \
+slick-greeter \
+bspwm \
+sxhkd \
+polybar \
 picom
 sudo dnf copr enable emixampp/synology-drive
 sudo dnf --refresh install synology-drive-noextra
