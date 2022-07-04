@@ -23,7 +23,6 @@ kitty \
 rofi \
 thunar \
 lightdm \
-slick-greeter \
 bspwm \
 sxhkd \
 polybar \
@@ -31,12 +30,41 @@ picom
 sudo dnf copr enable emixampp/synology-drive
 sudo dnf --refresh install synology-drive-noextra
 
+# ==== Setup Flatpak Repository ====
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 # ==== Setup Window Manager Basics ====
 sudo systemctl enable lightdm
 sudo systemctl set-default graphical.target
 
 cp /usr/share/doc/bspwm/examples/bspwmrc .config/bspwm
+tee ~/.config/bspwm/bspwmrc > /dev/null <<EOD
+#!/usr/bin/sh
+
+sxhkd &
+
+bspc monitor -d 1 2 3 4 5
+
+bspc config border_width	2
+bspc config window_gap		2
+
+bspc config split_ratio			0.50
+bspc config borderless_monocle	true
+bspc config gapless_monocle		true
+EOD
 cp /usr/share/doc/bspwm/examples/sxhkdrc .config/sxhkd
+tee -a ~/.config/sxhkd/sxhkdrc > /dev/null <<EOE
+
+#temporary commands
+super + x
+	kitty
+	
+super + e
+	thunar
+	
+super + BackSpace
+	rofi -show drun -show-icons -disable-history
+EOE
 cp /etc/polybar/config.ini .config/polybar/
 touch .config/polybar/launch.sh
 chmod +x .config/polybar/launch.sh
