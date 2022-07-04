@@ -16,6 +16,11 @@ mkdir Pictures
 mkdir Pictures/Wallpaper
 
 # ==== Base Programs Install ====
+sudo tee -a /etc/dnf/dnf.conf > /dev/null <<EOC
+fastestmirror=True
+max_parallel_downloads=10
+defaultyes=True
+EOC
 sudo dnf install \
 -y \
 @base-x \
