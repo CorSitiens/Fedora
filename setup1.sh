@@ -31,7 +31,8 @@ lightdm \
 bspwm \
 sxhkd \
 polybar \
-picom
+picom \
+flatpak
 sudo dnf copr enable emixampp/synology-drive
 sudo dnf --refresh install synology-drive-noextra
 
