@@ -94,6 +94,7 @@ EOF
 sudo nano /etc/lightdm/lightdm.conf \
 sudo nano /etc/default/grub \
 sudo nano /etc/systemd/timesyncd.conf \
+sudo grub2-mkconfig -o /etc/grub2.cfg
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 systemctl start systemd-timesyncd
 systemctl enable systemd-timesyncd
