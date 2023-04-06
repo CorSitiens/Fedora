@@ -11,6 +11,7 @@ mkdir Documents
 mkdir Documents/House
 mkdir Documents/Fax
 mkdir Documents/Obsidian
+mkdir Documents/Taxes
 mkdir Downloads
 mkdir Pictures
 mkdir Pictures/Wallpaper
@@ -90,6 +91,14 @@ polybar bar2 2>&1 | tee -a /tmp/polybar2.log & disown
 echo "Bars launched..."
 EOF
 
-sudo nano /etc/lightdm/lightdm.conf
+sudo nano /etc/lightdm/lightdm.conf \
+sudo nano /etc/default/grub \
+sudo nano /etc/systemd/timesyncd.conf \
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+systemctl start systemd-timesyncd
+systemctl enable systemd-timesyncd
+timedatectl set-timezone "America/Chicago"
+timedatectl show-timesync --all
+timedatectl
 
 #EOF
