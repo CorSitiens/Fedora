@@ -91,8 +91,7 @@ polybar bar2 2>&1 | tee -a /tmp/polybar2.log & disown
 echo "Bars launched..."
 EOF
 
-sudo su
-tee /etc/default/grub > /dev/null <<EOG
+sudo tee /etc/default/grub > /dev/null <<EOG
 GRUB_TIMEOUT=3
 GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
 GRUB_DEFAULT=saved
@@ -102,8 +101,7 @@ GRUB_CMDLINE_LINUX="rhgb amd_iommu=on iommu=pt quiet"
 GRUB_DISABLE_RECOVERY="true"
 GRUB_ENABLE_BLSCFG=true
 EOG
-grub2-mkconfig -o /etc/grub2.cfg
+sudo grub2-mkconfig -o /etc/grub2.cfg
 
-nano /etc/lightdm/lightdm.conf
-exit
+sudo nano /etc/lightdm/lightdm.conf
 #EOF
