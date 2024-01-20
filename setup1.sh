@@ -33,9 +33,10 @@ bspwm \
 sxhkd \
 polybar \
 picom \
+syncthing \
 flatpak
-sudo dnf copr enable emixampp/synology-drive
-sudo dnf --refresh install synology-drive-noextra
+# sudo dnf copr enable emixampp/synology-drive
+# sudo dnf --refresh install synology-drive-noextra
 
 # ==== Setup Flatpak Repository ====
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -102,6 +103,8 @@ GRUB_DISABLE_RECOVERY="true"
 GRUB_ENABLE_BLSCFG=true
 EOG
 sudo grub2-mkconfig -o /etc/grub2.cfg
+#sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
 sudo nano /etc/lightdm/lightdm.conf
+
 #EOF
