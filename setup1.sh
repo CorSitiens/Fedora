@@ -25,6 +25,7 @@ EOC
 sudo dnf install \
 -y \
 @base-x \
+dnf-plugins-core \
 kitty \
 rofi \
 thunar \
@@ -105,6 +106,16 @@ EOG
 sudo grub2-mkconfig -o /etc/grub2.cfg
 #sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
+# Configure Firewall for Syncthing
+sudo firewall-cmd --zone=public --add-service=syncthing --permanent
+sudo firewall-cmd --reload
+
+# Brave
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+sudo dnf install brave-browser -y
+
+# LightDM
 sudo nano /etc/lightdm/lightdm.conf
 
 #EOF
