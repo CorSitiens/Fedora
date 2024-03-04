@@ -80,27 +80,33 @@ window {
     height: 100%;
 }
 configuration {
-  display-drun: "";
+  display-drun: " ";
 }
 EOR
 
 # ==== Set Dark Theme ====
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita-dark'
 
 # ==== Setup Default Waybar Config ====
-cp -r /etc/xdg/waybar ~/.config/waybar
+cp -r /etc/xdg/waybar ~/.config
 
 # ==== Configure Firewall for Syncthing ====
 sudo firewall-cmd --zone=public --add-service=syncthing --permanent
 sudo firewall-cmd --reload
 
-# ==== Brave ====
+# ==== Setup Syncthing ====
+sudo systemctl enable syncthing@user.service
+sudo systemctl start syncthing@user.service
+
+# ==== Brave Browser ====
 sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 sudo dnf install brave-browser -y
 
-# SDDM
+# ==== SDDM Config ====
 sudo nano /etc/sddm.conf
 # Session=hyprland.desktop
 # DisplayServer=wayland
